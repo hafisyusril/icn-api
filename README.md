@@ -1,6 +1,6 @@
 # Task Manager API
 
-🌐 **Live Demo:** https://icn-test-phi.vercel.app/
+🌐 **Live Demo:** [https://icn-test-phi.vercel.app/](https://icn-api.vercel.app/)
 
 A simple Task Management API built with Express.js, TypeScript, Prisma ORM, and PostgreSQL. This API provides features for user authentication, task management with user relationships, and complete CRUD operations.
 
