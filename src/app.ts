@@ -30,4 +30,4 @@ app.get("/", (req, res) => {
 
 app.use(errorHandler);
 
-export default app; // 🔥 penting
+export default app; 

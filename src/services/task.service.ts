@@ -4,7 +4,7 @@ import { ApiError } from "../utils/api.error";
 export class TaskService {
   static async createTask(
     userId: string,
-    data: { title: string; description?: string }
+    data: { title: string; description?: string },
   ) {
     const task = await prisma.task.create({
       data: {
@@ -59,7 +59,7 @@ export class TaskService {
         createdAt: true,
         updatedAt: true,
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: [{ isCompleted: "asc" }, { createdAt: "desc" }],
     });
   }
 
@@ -116,7 +116,7 @@ export class TaskService {
   static async updateTask(
     id: string,
     userId: string,
-    data: { title?: string; description?: string; isCompleted?: boolean }
+    data: { title?: string; description?: string; isCompleted?: boolean },
   ) {
     const task = await prisma.task.findUnique({ where: { id } });
 
@@ -132,8 +132,12 @@ export class TaskService {
       where: { id },
       data: {
         ...(data.title && { title: data.title }),
-        ...(data.description !== undefined && { description: data.description }),
-        ...(data.isCompleted !== undefined && { isCompleted: data.isCompleted }),
+        ...(data.description !== undefined && {
+          description: data.description,
+        }),
+        ...(data.isCompleted !== undefined && {
+          isCompleted: data.isCompleted,
+        }),
       },
       select: {
         id: true,
